@@ -1,4 +1,4 @@
-package dev.pedroscheurer.nambadelivery.delivery.tracking.domain.model.exceptions;
+package dev.pedroscheurer.nambadelivery.delivery.tracking.domain.exceptions;
 
 public class DomainException extends RuntimeException{
     public DomainException() {

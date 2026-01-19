@@ -1,5 +1,6 @@
-package dev.pedroscheurer.nambadelivery.delivery.tracking.domain.model.enums;
+package dev.pedroscheurer.nambadelivery.delivery.tracking.domain.enums;
 
+import dev.pedroscheurer.nambadelivery.delivery.tracking.domain.model.enums.DeliveryStatus;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
