@@ -9,3 +9,13 @@ spring:
     url: jdbc:postgresql://localhost:5433/deliverydb
     username: postgres
     password: postgres
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.mapping:
+          delivery-placed-event:dev.pedroscheurer.nambadelivery.delivery.tracking.domain.event.DeliveryPlacedEvent,
+          delivery-picked-up-event:dev.pedroscheurer.nambadelivery.delivery.tracking.domain.event.DeliveryPickUpEvent,
+          delivery-fulfilled-event:dev.pedroscheurer.nambadelivery.delivery.tracking.domain.event.DeliveryFulfilledEvent

@@ -27,7 +27,7 @@ public class AssignedDelivery {
 
     static AssignedDelivery pending(UUID deliveryId, Courier courier){
         AssignedDelivery delivery = new AssignedDelivery();
-        delivery.setId(UUID.randomUUID());
+        delivery.setId(deliveryId);
         delivery.setAssignedAt(OffsetDateTime.now());
         delivery.setCourier(courier);
         return delivery;
