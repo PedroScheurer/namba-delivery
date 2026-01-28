@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
+import java.util.Random;
 import java.util.UUID;
 
 @RestController
@@ -55,7 +56,7 @@ public class CourierController {
     }
 
     @PostMapping("/payout-calculation")
-    public CourierPayoutResultModel calculate(@RequestBody CourierPayoutCalculationInput input){
+    public CourierPayoutResultModel calculate(@RequestBody CourierPayoutCalculationInput input) throws InterruptedException {
         BigDecimal payoutFee = courierPayoutService.calculate(input.distanceInKm());
 
         return new CourierPayoutResultModel(payoutFee);

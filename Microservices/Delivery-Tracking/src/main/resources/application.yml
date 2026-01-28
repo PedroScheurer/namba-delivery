@@ -26,3 +26,30 @@ eureka:
   instance:
     instance-id: ${random.value}
     prefer-ip-address: true
+resilience4j:
+  retry:
+    configs:
+      default:
+        max-attempts: 2
+        wait-duration: 20ms
+      instances:
+        Retry_CourierAPIClient_payoutCalculation:
+          baseConfig: default
+          max-attempts: 3
+          retryExceptions:
+            - org.springframework.web.client.ResourceAccessException
+          ignoreExceptions:
+            - org.springframework.web.client.HttpServerErrorException
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowType: COUNT_BASED #TIME_BASED
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        permittedNumberOfCallsInHalfOpenState: 3
+        waitDurationInOpenState: 10000
+    instances:
+      CircuitBreaker_CourierAPIClient_payoutCalculation:
+        baseConfig: default
+        waitDurationInOpenState: 5000
