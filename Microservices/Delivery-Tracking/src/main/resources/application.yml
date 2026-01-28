@@ -19,3 +19,10 @@ spring:
           delivery-placed-event:dev.pedroscheurer.nambadelivery.delivery.tracking.domain.event.DeliveryPlacedEvent,
           delivery-picked-up-event:dev.pedroscheurer.nambadelivery.delivery.tracking.domain.event.DeliveryPickUpEvent,
           delivery-fulfilled-event:dev.pedroscheurer.nambadelivery.delivery.tracking.domain.event.DeliveryFulfilledEvent
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${random.value}
+    prefer-ip-address: true

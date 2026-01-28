@@ -23,3 +23,10 @@ spring:
           delivery-placed-event:dev.pedroscheurer.nambadelivery.courier.management.infrastructure.event.DeliveryPlacedIntegrationEvent,
           delivery-picked-up-event:com.fasterxml.jackson.databind.JsonNode,
           delivery-fulfilled-event:dev.pedroscheurer.nambadelivery.courier.management.infrastructure.event.DeliveryFulfilledIntegrationEvent
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${random.value}
+    prefer-ip-address: true
