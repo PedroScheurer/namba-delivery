@@ -230,11 +230,8 @@ namba-delivery/
 
 * Autenticação (OAuth2 / Keycloak)
 * Observabilidade (Prometheus + Grafana)
-* Logging centralizado (ELK Stack)
-* Testes automatizados
 * CI/CD pipeline
 * Kubernetes
-* Domain Events formais
 
 ---
 
