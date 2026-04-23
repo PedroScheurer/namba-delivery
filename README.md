@@ -33,8 +33,9 @@ O sistema é dividido em bounded contexts independentes:
 │ (Core Domain)  │ │ (Core Domain)  │ │ (Infra Layer)      │
 └────────────────┘ └────────────────┘ └────────────────────┘
         ▲                 ▲
+        │                 │
         └──── Kafka ──────┘
-   (Domain Events / Async Communication)
+   (Event-Driven Communication)
 ```
 
 ---
@@ -63,6 +64,11 @@ POST   /api/v1/couriers/payout-calculation
 
 * CourierRegistrationService
 * CourierPayoutService
+
+### 📡 Integração com Kafka
+
+* Atua como **Consumer**
+* Consome eventos relacionados a entregas para atualização de contexto
 
 ### 📌 Regras de negócio
 
@@ -103,6 +109,15 @@ POST   /api/v1/deliveries/{id}/completion
 
 * DeliveryPreparationService
 * DeliveryCheckpointService
+
+### 📡 Integração com Kafka
+
+* Atua como **Producer**
+* Publica eventos de domínio:
+
+  * DeliveryPlacedEvent
+  * DeliveryPickedUpEvent
+  * DeliveryCompletedEvent
 
 ### 📌 Regras de negócio
 
@@ -146,17 +161,17 @@ POST   /api/v1/deliveries/{id}/completion
 
 * REST via API Gateway
 
-### 🟡 Assíncrona
+### 🟡 Assíncrona (Kafka)
 
-* Apache Kafka
+Fluxo principal:
 
-### Eventos de domínio (exemplo)
-
-* DeliveryCreatedEvent
-* DeliveryPlacedEvent
-* DeliveryPickedUpEvent
-* DeliveryCompletedEvent
-* CourierStatusUpdatedEvent
+```
+Delivery Tracking (Producer)
+        ↓
+     Kafka
+        ↓
+Courier Management (Consumer)
+```
 
 ---
 
@@ -164,8 +179,9 @@ POST   /api/v1/deliveries/{id}/completion
 
 * Bounded contexts isolados
 * Aggregates bem definidos (Courier, Delivery)
-* Comunicação desacoplada via Kafka
+* Comunicação desacoplada via eventos
 * Referência entre domínios por ID
+* Separação entre domínio, aplicação e infraestrutura
 
 ---
 
